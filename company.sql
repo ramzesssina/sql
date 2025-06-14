@@ -99,6 +99,7 @@ CREATE TABLE products (
   suppliersID INT NOT NULL,
   countc int not null,
   type_of_cargo varchar(100) not null,
+  `date` date not null,
   PRIMARY KEY (ID),
   INDEX `fk_products_suppliers1_idx` (suppliersID ASC) VISIBLE,
   CONSTRAINT `fk_products_suppliers1`
@@ -269,16 +270,16 @@ COMMIT;
 
 START TRANSACTION;
 
-INSERT INTO products (ID, `name`, price, suppliersID, countc, type_of_cargo) VALUES (1, 'Белая футболка', 200, 4, 0, "Обычный товар");
-INSERT INTO products (ID, `name`, price, suppliersID, countc, type_of_cargo) VALUES (2, 'Синии шорты', 180, 4, 0, "Обычный товар");
-INSERT INTO products (ID, `name`, price, suppliersID, countc, type_of_cargo) VALUES (3, 'Серебряный браслет', 340, 3, 0, "Обычный товар");
-INSERT INTO products (ID, `name`, price, suppliersID, countc, type_of_cargo) VALUES (4, 'Серебряный перстень', 270, 3, 0, "Обычный товар");
-INSERT INTO products (ID, `name`, price, suppliersID, countc, type_of_cargo) VALUES (5, 'Розовая кепка', 100, 1, 0, "Обычный товар");
-INSERT INTO products (ID, `name`, price, suppliersID, countc, type_of_cargo) VALUES (6, 'Белая майка', 130, 2, 1000, "Обычный товар");
-INSERT INTO products (ID, `name`, price, suppliersID, countc, type_of_cargo) VALUES (7, 'Синие джинсы', 230, 5, 0, "Обычный товар");
-INSERT INTO products (ID, `name`, price, suppliersID, countc, type_of_cargo) VALUES (8, 'Красные шорты', 180, 2, 0, "Обычный товар");
-INSERT INTO products (ID, `name`, price, suppliersID, countc, type_of_cargo) VALUES (9, 'Серые кроссовки', 410, 5, 0, "Обычный товар");
-INSERT INTO products (ID, `name`, price, suppliersID, countc, type_of_cargo) VALUES (10, 'Розовые туфли', 310, 1, 0, "Обычный товар");
+INSERT INTO products (ID, `name`, price, suppliersID, countc, type_of_cargo, `date`) VALUES (1, 'Белая футболка', 200, 4, 0, "Обычный товар", '2025-01-15');
+INSERT INTO products (ID, `name`, price, suppliersID, countc, type_of_cargo, `date`) VALUES (2, 'Синии шорты', 180, 4, 0, "Обычный товар", '2025-02-10');
+INSERT INTO products (ID, `name`, price, suppliersID, countc, type_of_cargo, `date`) VALUES (3, 'Серебряный браслет', 340, 3, 0, "Обычный товар", '2024-12-20');
+INSERT INTO products (ID, `name`, price, suppliersID, countc, type_of_cargo, `date`) VALUES (4, 'Серебряный перстень', 270, 3, 0, "Обычный товар", '2024-12-22');
+INSERT INTO products (ID, `name`, price, suppliersID, countc, type_of_cargo, `date`) VALUES (5, 'Розовая кепка', 100, 1, 0, "Обычный товар", '2025-01-05');
+INSERT INTO products (ID, `name`, price, suppliersID, countc, type_of_cargo, `date`) VALUES (6, 'Белая майка', 130, 2, 1000, "Обычный товар", '2025-03-01');
+INSERT INTO products (ID, `name`, price, suppliersID, countc, type_of_cargo, `date`) VALUES (7, 'Синие джинсы', 230, 5, 0, "Обычный товар", '2025-04-18');
+INSERT INTO products (ID, `name`, price, suppliersID, countc, type_of_cargo, `date`) VALUES (8, 'Красные шорты', 180, 2, 0, "Обычный товар", '2025-02-25');
+INSERT INTO products (ID, `name`, price, suppliersID, countc, type_of_cargo, `date`) VALUES (9, 'Серые кроссовки', 410, 5, 0, "Обычный товар", '2025-03-10');
+INSERT INTO products (ID, `name`, price, suppliersID, countc, type_of_cargo, `date`) VALUES (10, 'Розовые туфли', 360, 1, 100, "Обычный товар", '2025-05-01');
 
 COMMIT;
 
@@ -292,30 +293,30 @@ INSERT INTO type_of_application (ID, `type`, `name`) VALUES (5, 'DTF печат�
 COMMIT;
 
 START TRANSACTION;
-INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (1, 1, 1, 1, 1, 1, 5, 1300, '130');
-INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (2, 2, 2, 2, 1, 1, 5, 1300, '150');
-INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (3, 3, 2, 2, 1, 1, 5, 1300, '30');
-INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (4, 4, 3, 3, 2, 1, 5, 1300, '26');
-INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (5, 5, NULL, NULL, NULL, 2, NULL, 1000, '32');
-INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (6, 6, 8, 8, 5, 2, 3, 1200, '15');
-INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (7, 7, NULL, NULL, NULL, 3, 1, 3000, '5');
-INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (8, 8, 7, 7, 4, 4, NULL, 2500, '7');
-INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (9, 9, 3, 3, 2, 5, 2, 900, '20');
-INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (10, 10, 4, 4, 3, 5, 2, 900, '34');
-INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (11, 11, 4, 4, 3, 6, 4, 850, '160');
-INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (12, 12, 4, 4, 3, 6, 4, 850, '73');
-INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (13, 13, 4, 4, 3, 6, 4, 850, '63');
-INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (14, 14, 6, 6, 4, 6, 2, 850, '70');
-INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (15, 15, 6, 6, 4, 7, NULL, 2300, '25');
-INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (16, 16, NULL, NULL, NULL, 7, NULL, 2300, '31');
-INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (17, 17, 7, 7, 4, 8, 2, 700, '50');
-INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (18, 18, 8, 8, 5, 8, 2, 700, '50');
-INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (19, 19, 1, 1, 1, 8, 2, 700, '50');
-INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (20, 20, 2, 2, 1, 9, NULL, 3500, '14');
-INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (21, 21, 3, 3, 2, 10, NULL, 5600, '15');
-INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (22, 5, 3, 3, 2, 3, 5, 2000, '7');
-INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (23, 3, NULL, NULL, NULL, 4, NULL, 2500, '10');
-INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (24, 3, NULL, NULL, NULL, 6, 2, 1000, '20');
+INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (1, 1, 1, 1, 1, 1, 5, 1300, '1300');
+INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (2, 2, 2, 2, 1, 1, 5, 1300, '1500');
+INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (3, 3, 2, 2, 1, 1, 5, 1300, '300');
+INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (4, 4, 3, 3, 2, 1, 5, 1300, '260');
+INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (5, 5, NULL, NULL, NULL, 2, NULL, 1000, '320');
+INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (6, 6, 8, 8, 5, 2, 3, 1200, '150');
+INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (7, 7, NULL, NULL, NULL, 3, 1, 3000, '6000');
+INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (8, 8, 7, 7, 4, 4, NULL, 2500, '70');
+INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (9, 9, 3, 3, 2, 5, 2, 900, '200');
+INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (10, 10, 4, 4, 3, 5, 2, 900, '340');
+INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (11, 11, 4, 4, 3, 6, 4, 850, '1600');
+INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (12, 12, 4, 4, 3, 6, 4, 850, '730');
+INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (13, 13, 4, 4, 3, 6, 4, 850, '630');
+INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (14, 14, 6, 6, 4, 6, 2, 850, '700');
+INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (15, 15, 6, 6, 4, 7, NULL, 2300, '250');
+INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (16, 16, NULL, NULL, NULL, 7, NULL, 2300, '310');
+INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (17, 17, 7, 7, 4, 8, 2, 700, '500');
+INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (18, 18, 8, 8, 5, 8, 2, 700, '500');
+INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (19, 19, 1, 1, 1, 8, 2, 700, '500');
+INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (20, 20, 2, 2, 1, 9, NULL, 3500, '140');
+INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (21, 21, 3, 3, 2, 10, NULL, 5600, '150');
+INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (22, 5, 3, 3, 2, 3, 5, 2000, '70');
+INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (23, 10, NULL, NULL, NULL, 4, NULL, 2500, '100');
+INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) VALUES (24, 10, NULL, NULL, NULL, 6, 2, 1000, '200');
 COMMIT;
 
 ALTER TABLE orders_has_products
@@ -398,7 +399,8 @@ in name_in varchar(100),
 in price int,
 in suppliersID int,
 in countc int,
-in type_of_cargo varchar(100))
+in type_of_cargo varchar(100),
+in `date` date)
 
 begin
 	if exists(
@@ -407,12 +409,12 @@ begin
 			signal sqlstate "45000"
 			set message_text = "Товар с таким названием уже добавлен";
 	else
-		insert into products (ID, `name`, price, suppliersID, countc, type_of_cargo)
-		values (ID, name_in, price, suppliersID, countc, type_of_cargo);
+		insert into products (ID, `name`, price, suppliersID, countc, type_of_cargo, `date`)
+		values (ID, name_in, price, suppliersID, countc, type_of_cargo, `date`);
 	end if;
 END$$
 DELIMITER ;
-call AddProceducts(13, "Шапка-бини Красная", 900, 2, 0, "Обычный товар");
+call AddProceducts(13, "Шапка-бини Красная", 900, 2, 0, "Обычный товар",'2025-05-09');
 select * from products;
 
 #ZADANIE 1.2
@@ -438,8 +440,6 @@ begin
 end$$
 DELIMITER ;
 
-call AddOrders_contracts (25, 3, 3, '2025-04-09','2025-05-10', 'Передан перевозщику');
-#call AddOrders_contracts (26, 9, 3, '2025-04-09','2025-05-10', 'Передан перевозщику');
 select * from orders;
 
 #ZADANIE 1.3
@@ -474,7 +474,6 @@ DECLARE new_contract_id INT;
 END$$
 DELIMITER ;
 
-CALL AddContractAndOrder(26, 3, 1,'2025-05-02', '2025-06-02', 'Ждёт обработки');
 select * from contracts;
 select * from orders;
 
@@ -571,19 +570,13 @@ call CalculDeliver('2024-11-27');
 #------------------------------lab4(5)------------------------------
 #ZADANIE 1
 DELIMITER $$
-create trigger update_total_price after insert on orders_has_products for each row
+create trigger update_total_price after update on orders_has_products for each row
 begin
 declare total int;
 select sum( productprice*amount ) into total from orders_has_products where ordersID = new.ordersID;
 update orders set orders_total = total where id=new.ordersID;
 end$$
 DELIMITER ;
-INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) 
-VALUES (26, 7, NULL, NULL, NULL, 6, 2, 1000, '20');
-INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount) 
-VALUES (32, 7, NULL, NULL, NULL, 6, 2, 100, '5');
-select * from orders_has_products;
-select * from orders;
 
 #ZADANIE 2
 DELIMITER $$
@@ -612,7 +605,7 @@ end$$
 DELIMITER ;
 
 INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount)
-VALUES (27, 3, 4, 4, 3, 6, 4, 850, '73');
+VALUES (27, 10, 4, 4, 3, 6, 4, 850, '73');
 select * from products;
 
 ALTER TABLE orders ADD COLUMN price_from_discount INT DEFAULT 0;
@@ -634,7 +627,7 @@ set new.price_from_discount = new.orders_total - (new.orders_total * (new.discou
 end$$
 DELIMITER ;
 update orders set orders_total = 11000 where (ID = 1);
-select * from orders;#Добавить колонку для общей цены со скидкой
+select * from orders;
 
 #ZADANIE 5
 DELIMITER $$
@@ -665,46 +658,45 @@ begin
 	into transport_type from transport
     where ID = new.transportID;
     
-    select sum(amount) into total_amount from orders_has_products;
+    select sum(amount) into total_amount from orders_has_products
+    where ordersID = new.ordersID; #
     
     if total_amount < 1000 then
-		set new.delivery_price = sice_factory * transport_type * 1000;
+		set new.delivery_price = sice_factory * transport_type * 500;
 	elseif total_amount >= 1000 and total_amount <= 5000 then
-		set new.delivery_price = sice_factory * transport_type * 2000;
+		set new.delivery_price = sice_factory * transport_type * 1000;
 	else
-		set new.delivery_price = sice_factory * transport_type * 3000;
+		set new.delivery_price = sice_factory * transport_type * 2000;
 	end if;
 end$$
 DELIMITER ;
-update orders_has_products set deliveriesID = 3, transportID = 3, companyID = 2 where (ID = 4);
-select * from orders_has_products; # Сделать доставку по габаритам, маленький товар дешевле, большой дороже и тд
+update orders_has_products set deliveriesID = 1, transportID = 1, companyID = 1 where (ID = 24);
+select * from orders_has_products;
 
 #ZADANIE 6
 DELIMITER $$
 CREATE TRIGGER calculate_employee_payment 
-AFTER UPDATE ON orders_has_products 
+before UPDATE ON orders 
 FOR EACH ROW
 BEGIN
-    DECLARE total DECIMAL(10, 2);
-
-    SELECT SUM(productprice * amount)
-    INTO total
-    FROM orders_has_products
-    WHERE ordersID = NEW.ordersID;
-
-    UPDATE orders
-    SET employee_payment = total * 0.10
-    WHERE ID = NEW.ordersID;
+    IF new.`status` = 'Отменен' THEN
+        SET new.employee_payment = 0, 
+			new.orders_total = 0, 
+			new.discount = 0, 
+            new.price_from_discount = 0;
+    ELSE
+        SET new.employee_payment = new.price_from_discount * 0.10;
+	end if;
 END$$
 DELIMITER ;
-update orders_has_products set amount = '1000', productprice = 100 where (ID = 1);
+update orders_has_products set amount = '15', productprice = 1300 where (ID = 2);
+select * from orders_has_products;
 select * from orders;
 
 #ZADANIE 7
 
 create table avg_price(
-	productID int not null,
-    productNamen varchar(100),
+    productNamen varchar(100) not null primary key,
     countc int not null,
     avg_price decimal(10,2) not null
 );
@@ -714,48 +706,66 @@ CREATE TRIGGER calculate_avg_price
 AFTER insert ON products
 FOR EACH ROW
 begin
-	declare total_sum int;
-	declare total_count int;
-	declare average int;
-    
-	select sum(price), count(*) into total_sum, total_count from products;
-	if total_count > 0 then
-		set average = total_sum / total_count;
-		insert into avg_price (productID, productNamen, countc, avg_price) values(new.ID, new.`name`, new.countc, average);
-	END IF;
+DECLARE total_sum DECIMAL(10,2);
+    DECLARE total_count INT;
+    DECLARE average DECIMAL(10,2);
+
+    SELECT SUM(price), COUNT(*) 
+    INTO total_sum, total_count 
+    FROM products 
+    WHERE `name` = NEW.`name`;
+
+    SET average = total_sum / total_count;
+ 
+    INSERT INTO avg_price (productNamen, countc, avg_price)
+    VALUES (NEW.name, total_count, average)
+    ON DUPLICATE KEY UPDATE
+        countc = total_count,
+        avg_price = average;
 end$$
 DELIMITER ;
 
-insert into products(ID, `name`, price, suppliersID, countc, type_of_cargo) values(12, 'Розовые туфли', 310, 1, 100, "Обычный товар");
-select * from avg_price;
+insert into products(ID, `name`, price, suppliersID, countc, type_of_cargo, `date`) values(12, 'Розовые туфли', 960, 1, 100, "Обычный товар", '2025-06-09');
+insert into products(ID, `name`, price, suppliersID, countc, type_of_cargo, `date`) values(14, 'Розовые туфли', 560, 2, 2500, "Обычный товар", '2025-06-10');
+select productNamen as 'Наименование продукта', countc as 'Количество вариаций товара', avg_price as 'Средняя цена' from avg_price;
+#добавить атрибут с датами
 
 #ZADANIE 8
 create table avg_price_orders(
-	ordersID int not null,
-    amount int not null,
-    productprice int not null,
+	ordersID int not null primary key,
     avg_price decimal(10,2) not null
 );
 
 DELIMITER $$
-CREATE TRIGGER calculate_avg_price_orders 
-AFTER insert ON orders_has_products
+
+CREATE TRIGGER calculate_avg_price_orders
+AFTER INSERT ON orders_has_products
 FOR EACH ROW
-begin
-	declare total_sum int;
-    declare total_count int;
-    declare average int;
+BEGIN
+    DECLARE total_sum DECIMAL(10,2);
+    DECLARE total_count INT;
+    DECLARE average_price DECIMAL(10,2);
     
-    select sum(productprice), count(*) into total_sum, total_count from orders_has_products
-    where ordersID = new.ordersID;
-    if total_count > 0 then
-		set average = total_sum / total_count;
-        insert into avg_price_orders (ordersID, amount, productprice, avg_price) values (new.ordersID, new.amount, new.productprice, average);
-	end if;
-end$$
+    SELECT 
+        SUM(ohp.productprice * ohp.amount),
+        SUM(ohp.amount)
+    INTO total_sum, total_count
+    FROM orders_has_products ohp
+    JOIN orders o ON ohp.ordersID = o.ID
+    WHERE o.`status` != 'Отменен' AND ohp.productprice IS NOT NULL;
+
+    IF total_count > 0 THEN
+        SET average_price = total_sum / total_count;
+
+        INSERT INTO avg_price_orders (ordersID, avg_price)
+        VALUES (1, average_price)
+        ON DUPLICATE KEY UPDATE avg_price = average_price;
+    END IF;
+END$$
 DELIMITER ;
 
-insert into orders_has_products(ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount)
-values(28, 3, NULL, NULL, NULL, 6, 2, 1000, '20');
-select * from avg_price_orders;
+INSERT INTO orders_has_products (ID, ordersID, deliveriesID, transportID, companyID, productsID, type_of_applicationID, productprice, amount)
+VALUES (31, 10, 4, 4, 3, 6, 4, 850, '73');
+
+select avg_price as 'Средняя цена всех заказов' from avg_price_orders;
 #------------------------------lab5(6)------------------------------
